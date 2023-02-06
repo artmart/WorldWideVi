@@ -1,7 +1,6 @@
 <?php 
 use yii\bootstrap5\Html;
 ?>
-
 <header id="page-topbar">
     <div class="layout-width">
         <div class="navbar-header">
@@ -36,6 +35,7 @@ use yii\bootstrap5\Html;
                 </button>
 
                 <!-- App Search-->
+                <?php /*
                 <form class="app-search d-none d-md-block">
                     <div class="position-relative">
                         <input type="text" class="form-control" placeholder="Search..." autocomplete="off" id="search-options" value="">
@@ -120,10 +120,11 @@ use yii\bootstrap5\Html;
                         </div>
                     </div>
                 </form>
+                */ ?>
             </div>
 
             <div class="d-flex align-items-center">
-
+<!--
                 <div class="dropdown d-md-none topbar-head-dropdown header-item">
                     <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle" id="page-header-search-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="bx bx-search fs-22"></i>
@@ -139,7 +140,8 @@ use yii\bootstrap5\Html;
                         </form>
                     </div>
                 </div>
-
+-->
+<?php /*
                 <div class="dropdown ms-1 topbar-head-dropdown header-item">
                     <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img id="header-lang-img" src="/images/flags/us.svg" alt="Header Language" height="20" class="rounded">
@@ -404,6 +406,8 @@ use yii\bootstrap5\Html;
                         </div>
                     </div>
                 </div>
+ */ ?>               
+                
 
                 <div class="ms-1 header-item d-none d-sm-flex">
                     <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle" data-toggle="fullscreen">
@@ -416,7 +420,7 @@ use yii\bootstrap5\Html;
                         <i class='bx bx-moon fs-22'></i>
                     </button>
                 </div>
-
+<?php /*
                 <div class="dropdown topbar-head-dropdown ms-1 header-item" id="notificationDropdown">
                     <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle" id="page-header-notifications-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">
                         <i class='bx bx-bell fs-22'></i>
@@ -680,7 +684,7 @@ use yii\bootstrap5\Html;
                         </div>
                     </div>
                 </div>
-
+*/ ?>
                 <div class="dropdown ms-sm-3 header-item topbar-user">
                 <?php
                     if (Yii::$app->user->isGuest) {
@@ -725,6 +729,7 @@ use yii\bootstrap5\Html;
         </div>
     </div>
 </header>
+
 
 <!-- removeNotificationModal -->
 <div id="removeNotificationModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true">

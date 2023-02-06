@@ -62,6 +62,12 @@
                         </ul>
                     </div>
                 </li> <!-- end Dashboard Menu -->
+                
+                
+                
+                
+                
+ <?php /*               
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarApps" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarApps">
                         <i class="ri-apps-2-line"></i> <span data-key="t-apps">Apps</span>
@@ -375,6 +381,9 @@
                         </ul>
                     </div>
                 </li>
+                
+                
+
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarLayouts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
@@ -570,6 +579,8 @@
                         </ul>
                     </div>
                 </li>
+                
+
 
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarPages" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
@@ -845,7 +856,7 @@
                         </ul>
                     </div>
                 </li>
-
+*/ ?>
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarTables" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarTables">
                         <i class="ri-layout-grid-line"></i> <span data-key="t-tables">Tables</span>
@@ -952,7 +963,7 @@
                         </ul>
                     </div>
                 </li>
-
+<?php /*
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarIcons" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarIcons">
                         <i class="ri-compasses-2-line"></i> <span data-key="t-icons">Icons</span>
@@ -1047,7 +1058,7 @@
                         </ul>
                     </div>
                 </li>
-
+*/ ?>
             </ul>
         </div>
         <!-- Sidebar -->

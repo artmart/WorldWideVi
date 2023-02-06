@@ -99,9 +99,9 @@ AppAsset::register($this);
     <div class="page-content">
         <div class="container-fluid">
 
-        <?php echo $this->render('../velzon/partials/page-title', array('pagetitle'=>'Layouts', 'title'=>'Two Column')); ?>
+        <?php echo $this->render('../velzon/partials/page-title', array('pagetitle'=>'Home', 'title'=>'Dashboard')); ?>
                     
-        <?= Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : []]) ?>
+        <?php // echo Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : []]) ?>
         <?= Alert::widget() ?>
         <?= $content ?>
 
