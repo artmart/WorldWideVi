@@ -119,7 +119,7 @@ AppAsset::register($this);
 
 
 
-    <?php //echo $this->render('../velzon/partials/customizer'); ?>
+    <?php echo $this->render('../velzon/partials/customizer'); ?>
 
     <?php echo $this->render('../velzon/partials/vendor-scripts'); ?>
 
