@@ -24,7 +24,7 @@ foreach($clients as $c){
         $active_clients++;
         $potential_revenue = $potential_revenue + $c['price'];
         
-        if(date('Ym')==date('Ym', strtotime($c['fromDATE']))){
+        if(date('Ym')==date('Ym', strtotime($c['addedTime']))){
             $active_clients_total_this_month++;
             $potential_revenue_total_this_month + $potential_revenue_total_this_month + $c['price'];
         }
@@ -32,7 +32,7 @@ foreach($clients as $c){
         $table .= "<tr>
                 <td>".$c['name']."</td>
                 <td>".$c['email'] ."</td>
-                <td>".$c['bookedDATE']."</td>
+                <td>".$c['fromDATE']."</td>
                 <td>".$c['desiredDATE']."</td>
                 <td>".$c['scheduleID']."</td>
                 <td>".$c['AGENT']."</td>
