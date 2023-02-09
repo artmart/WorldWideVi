@@ -7,25 +7,19 @@ $clients = Yii::$app->getDb()->createCommand($clients_query)->queryAll();
 //$bookings = Yii::$app->getDb()->createCommand("SELECT * FROM clients")->queryAll(); 
 $table = '';
 
-
-    $active_clients = 0;
-    $potential_revenue = 0;
-    $revenue = 0;
-    $bookers_amount = 0;
-
     $active_clients_total_this_month = 0;
     $potential_revenue_total_this_month = 0;
     $revenue_total_this_monyh = 0;
     $bookers_total_this_month = 0;
-
+    
 foreach($clients as $c){
 
     if($c['b_id']>0){
-        $active_clients++;
-        $potential_revenue = $potential_revenue + $c['price'];
+        //$active_clients++;
+        //$potential_revenue = $potential_revenue + $c['price'];
         
         if(date('Ym')==date('Ym', strtotime($c['addedTime']))){
-            $active_clients_total_this_month++;
+           // $active_clients_total_this_month++;
             $potential_revenue_total_this_month + $potential_revenue_total_this_month + $c['price'];
         }
         
@@ -39,8 +33,8 @@ foreach($clients as $c){
                 <td>".number_format($c['price'], 2)."</td>
                </tr>";     
     }else{
-        $revenue = $revenue + $c['price'];
-        $bookers_amount++;
+        //$revenue = $revenue + $c['price'];
+        //$bookers_amount++;
         if(date('Ym')==date('Ym', strtotime($c['fromDATE']))){
                 $revenue_total_this_monyh = $revenue_total_this_monyh + $c['price'];
                 $bookers_total_this_month++;
@@ -140,66 +134,39 @@ foreach($clients as $c){
 </div><!-- end col -->
 </div><!-- end row -->
 
-
-
 <div class="row">
 <div class="col-xl-12">
 <div class="card">
 <div class="card-header border-0 align-items-center d-flex">
-<h4 class="card-title mb-0 flex-grow-1">Projects Overview</h4>
+<h4 class="card-title mb-0 flex-grow-1">Monthly Overview</h4> 
+<div id="wait" style="display:none;z-index: 1000;"><img src='/images/ajaxloader.gif'/></div>
 <div>
-    <button type="button" class="btn btn-soft-secondary btn-sm">
-        ALL
-    </button>
-    <button type="button" class="btn btn-soft-secondary btn-sm">
-        1M
-    </button>
-    <button type="button" class="btn btn-soft-secondary btn-sm">
-        6M
-    </button>
-    <button type="button" class="btn btn-soft-primary btn-sm">
-        1Y
-    </button>
+    <button type="button" class="btn btn-soft-secondary btn-sm" onclick="chartshow('0')">ALL</button>
+    <button type="button" class="btn btn-soft-secondary btn-sm" onclick="chartshow('1')">1M</button>
+    <button type="button" class="btn btn-soft-secondary btn-sm" onclick="chartshow('6')">6M</button>
+    <button type="button" class="btn btn-soft-primary btn-sm" onclick="chartshow('12')">1Y</button>
 </div>
 </div><!-- end card header -->
 
-<div class="card-header p-0 border-0 bg-soft-light">
-<div class="row g-0 text-center">
-    <div class="col-6 col-sm-3">
-        <div class="p-3 border border-dashed border-start-0">
-            <h5 class="mb-1"><span class="counter-value" data-target="<?=$active_clients;?>">0</span></h5>
-            <p class="text-muted mb-0">Active clients</p>
-        </div>
-    </div>
-    <!--end col-->
-    <div class="col-6 col-sm-3">
-        <div class="p-3 border border-dashed border-start-0">
-            <h5 class="mb-1">$<span class="counter-value" data-target="<?=$potential_revenue;?>">0</span></h5>
-            <p class="text-muted mb-0">Potential revenue (unfinished clients)</p>
-        </div>
-    </div>
-    <!--end col-->
-    <div class="col-6 col-sm-3">
-        <div class="p-3 border border-dashed border-start-0">
-            <h5 class="mb-1">$<span class="counter-value" data-target="<?=$revenue;?>">0</span></h5>
-            <p class="text-muted mb-0">Revenue (finished clients)</p>
-        </div>
-    </div>
-    <!--end col-->
-    <div class="col-6 col-sm-3">
-        <div class="p-3 border border-dashed border-start-0 border-end-0">
-            <h5 class="mb-1 text-success"><span class="counter-value" data-target="<?=$bookers_amount;?>">0</span></h5>
-            <p class="text-muted mb-0">Bookers amount (finished clients)</p>
-        </div>
-    </div>
-    <!--end col-->
-</div>
-</div><!-- end card header -->
-<div class="card-body p-0 pb-2">
-<div>
-    <div id="projects-overview-chart" data-colors='["--vz-primary", "--vz-warning", "--vz-success"]' class="apex-charts" dir="ltr"></div>
-</div>
-</div><!-- end card body -->
+<div id="monthly_overview_chart_show"></div>
+
+<script>
+function chartshow(dt){    
+    $.ajax({
+			type: 'post',
+			url: '/site/topchart',
+			data: {'dt': dt},
+            beforeSend: function(){$("#wait").css("display", "block"); }, 
+			success: function (response) {
+			     $("#wait").css("display", "none");
+			     $( '#monthly_overview_chart_show' ).html(response);
+                 //overviewchartinit();
+			}
+        }); 
+  }
+  
+$(document).ready(function(){chartshow('0'); });
+</script>
 </div><!-- end card -->
 </div><!-- end col -->
 </div><!-- end row -->

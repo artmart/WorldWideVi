@@ -21,6 +21,14 @@ use frontend\models\ContactForm;
  */
 class SiteController extends Controller
 {
+    public function beforeAction($action)
+    {
+        if (in_array($action->id, ['topchart'])) {
+            $this->enableCsrfValidation = false;
+        }
+        return parent::beforeAction($action);
+    }
+    
     /**
      * {@inheritdoc}
      */
@@ -32,7 +40,7 @@ class SiteController extends Controller
                 'only' => ['logout', 'signup', 'index'],
                 'rules' => [
                     [
-                        'actions' => ['signup'],
+                        'actions' => ['signup', 'topchart'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
@@ -77,6 +85,11 @@ class SiteController extends Controller
     {
         return $this->render('index');
     }
+    
+    public function actionTopchart()
+    {
+        return $this->renderPartial('top_chart');
+    } 
 
     /**
      * Logs in a user.

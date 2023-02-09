@@ -35,7 +35,7 @@ function getChartColorsArray(chartId) {
         }
     }
 }
-
+/*
 // Projects Overview
 var linechartcustomerColors = getChartColorsArray("projects-overview-chart");
 if (linechartcustomerColors) {
@@ -157,7 +157,7 @@ if (linechartcustomerColors) {
     var chart = new ApexCharts(document.querySelector("#projects-overview-chart"), options);
     chart.render();
 }
-
+*/
 //Radial chart data
 var isApexSeriesData = {};
 var isApexSeries = document.querySelectorAll("[data-chart-series]");
