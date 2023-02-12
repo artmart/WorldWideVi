@@ -17,10 +17,6 @@ $potential_revenue_chart = [];
 $revenue_chart = [];
 $bookers_amount_chart = [];
 
-
-
-
-
 $clients_chart_query = "SELECT  DATE_FORMAT(c.addedTime, '%Y-%M') dt, COUNT(*) cnt_total, SUM(IF(b.paid=1, b.price, 0)) revenue, SUM(IF(b.paid<>1, b.price, 0)) potencial_revenue,
                         SUM(IF(b.id>0, 1, 0)) active_clients, SUM(IF((b.id=0 or b.id IS null), 1, 0)) bookers_amount
                         FROM clients c LEFT JOIN bookings b ON b.email=c.email ". $where ." GROUP BY dt ORDER BY dt asc";

@@ -20,12 +20,16 @@ return [
         ],
         'user' => [
             'identityClass' => 'common\models\User',
-            'enableAutoLogin' => true,
+            'enableAutoLogin' => false,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
+            'authTimeout' => 1800,
+            'enableSession' => true,
         ],
         'session' => [
             // this is the name of the session cookie used for login on the frontend
             'name' => 'advanced-frontend',
+            'class' => 'yii\web\Session',
+            'timeout' => 1800,
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -47,6 +51,7 @@ return [
                 'login'=>'site/login',
                 'signup' => 'site/signup',
                 'logout' => 'site/logout',
+                'clients' => 'site/clients'
             ],
         ],
         

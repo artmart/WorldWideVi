@@ -40,7 +40,7 @@ class SiteController extends Controller
                 'only' => ['logout', 'signup', 'index'],
                 'rules' => [
                     [
-                        'actions' => ['signup', 'topchart'],
+                        'actions' => ['signup', 'topchart', 'clients'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
@@ -90,6 +90,11 @@ class SiteController extends Controller
     {
         return $this->renderPartial('top_chart');
     } 
+    
+    public function actionClients()
+    {
+        return $this->render('clients');
+    }
 
     /**
      * Logs in a user.
