@@ -39,6 +39,9 @@
                     <div class="collapse menu-dropdown" id="sidebarDashboards">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
+                                <a href="/clients" class="nav-link" data-key="t-analytics">All Clients</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="dashboard-analytics" class="nav-link" data-key="t-analytics"> Analytics </a>
                             </li>
                             <li class="nav-item">
