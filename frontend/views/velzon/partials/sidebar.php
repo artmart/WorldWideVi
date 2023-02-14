@@ -31,7 +31,7 @@
             <div id="two-column-menu">
             </div>
             <ul class="navbar-nav" id="navbar-nav">
-                <li class="menu-title"><span data-key="t-menu">Menu</span></li>
+               <!-- <li class="menu-title"><span data-key="t-menu">Menu</span></li>-->
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
                         <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Dashboards</span>
@@ -39,8 +39,12 @@
                     <div class="collapse menu-dropdown" id="sidebarDashboards">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
+                                <a href="/" class="nav-link" data-key="t-analytics">Home</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="/clients" class="nav-link" data-key="t-analytics">All Clients</a>
                             </li>
+                            <!--
                             <li class="nav-item">
                                 <a href="dashboard-analytics" class="nav-link" data-key="t-analytics"> Analytics </a>
                             </li>
@@ -62,6 +66,7 @@
                             <li class="nav-item">
                                 <a href="dashboard-job" class="nav-link"><span data-key="t-job">Job</span> <span class="badge badge-pill bg-success" data-key="t-new">New</span></a>
                             </li>
+                            -->
                         </ul>
                     </div>
                 </li> <!-- end Dashboard Menu -->
@@ -859,7 +864,7 @@
                         </ul>
                     </div>
                 </li>
-*/ ?>
+
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarTables" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarTables">
                         <i class="ri-layout-grid-line"></i> <span data-key="t-tables">Tables</span>
@@ -966,7 +971,7 @@
                         </ul>
                     </div>
                 </li>
-<?php /*
+
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarIcons" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarIcons">
                         <i class="ri-compasses-2-line"></i> <span data-key="t-icons">Icons</span>

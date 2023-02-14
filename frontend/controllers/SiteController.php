@@ -23,7 +23,7 @@ class SiteController extends Controller
 {
     public function beforeAction($action)
     {
-        if (in_array($action->id, ['topchart'])) {
+        if (in_array($action->id, ['topchart', 'clientsreport', 'clients'])) {
             $this->enableCsrfValidation = false;
         }
         return parent::beforeAction($action);
@@ -37,15 +37,15 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => \yii\filters\AccessControl::className(),
-                'only' => ['logout', 'signup', 'index'],
+                'only' => ['logout', 'signup', 'index', 'topchart', 'clients', 'clientsreport'],
                 'rules' => [
                     [
-                        'actions' => ['signup', 'topchart', 'clients'],
+                        'actions' => ['signup'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index', 'topchart', 'clients', 'clientsreport'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -95,6 +95,12 @@ class SiteController extends Controller
     {
         return $this->render('clients');
     }
+    
+    public function actionClientsreport()
+    {
+        return $this->renderPartial('clients_report');
+    }
+    
 
     /**
      * Logs in a user.

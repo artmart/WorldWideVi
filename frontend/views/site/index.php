@@ -261,7 +261,7 @@ $(document).ready(function(){chartshow('0'); });
 </div><!-- end cardheader -->
 <div class="card-body">
 <div class="table-responsive table-card">
-<table id="example1" class="display table table-nowrap table-centered align-middle" width="100%" cellspacing="0">
+<table id="example1" class="display table-nowrap align-middle" width="100%" cellspacing="0">
 <thead class="bg-light text-muted">
     <tr>
         <th scope="col">Name</th>
@@ -453,6 +453,7 @@ $(document).ready(function(){chartshow('0'); });
 
 </div><!-- end row -->
 
+<?php /*
 <div class="row">
 <div class="col-xxl-4">
 <div class="card">
@@ -917,7 +918,7 @@ $(document).ready(function(){chartshow('0'); });
 </div><!-- end card -->
 </div><!-- end col -->
 </div><!-- end row -->
-
+*/ ?>
 
 <script>
     $('#example1').DataTable({

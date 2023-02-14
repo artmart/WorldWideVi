@@ -244,6 +244,7 @@ if (donutchartProjectsStatusColors) {
     chart.render();
 }
 
+/*
 // chat
 var currentChatId = "users-chat";
 scrollToBottom(currentChatId);
@@ -263,3 +264,18 @@ function scrollToBottom(id) {
             });
     }, 100);
 }
+*/
+
+$('#example2').DataTable({
+          "ordering": true,
+          "paging": true,
+          "searching": true,
+          "info":     true,
+          dom: "Bflrtip",   
+          buttons: [
+            {extend: "copy", className: "btn-sm"},
+            {extend: "csv", className: "btn-sm"},
+            {extend: "excel", className: "btn-sm"},
+            {extend: "print", className: "btn-sm"},
+          ],
+        }); 
