@@ -69,8 +69,13 @@ foreach($clients_chart as $c){
 </div>
 </div><!-- end card header -->
 <div class="card-body p-0 pb-2">
-<div>
-    <div id="projects-overview-chart" data-colors='["--vz-primary", "--vz-warning", "--vz-success"]' class="apex-charts" dir="ltr"></div>
+<div class="row">
+<div class="col-sm-6">
+    <div id="projects-overview-chart1" data-colors='["--vz-primary", "--vz-warning", "--vz-success"]' class="apex-charts" dir="ltr"></div>
+</div>
+<div class="col-sm-6">
+    <div id="projects-overview-chart2" data-colors='["--vz-primary", "--vz-warning", "--vz-success"]' class="apex-charts" dir="ltr"></div>
+</div>
 </div>
 <script>
 //function overviewchartinit(){
@@ -83,14 +88,6 @@ foreach($clients_chart as $c){
             type: 'bar',
             data: <?=json_encode($bookers_amount_chart);?>
         }, {
-            name: 'Potential revenue',
-            type: 'bar',
-            data: <?=json_encode($potential_revenue_chart);?>
-        }, {
-            name: 'Revenue',
-            type: 'bar',
-            data: <?=json_encode($revenue_chart);?>
-        },{
             name: 'Active Clients',
             type: 'bar',
             data: <?=json_encode($active_clients_chart);?>
@@ -101,7 +98,14 @@ foreach($clients_chart as $c){
             dashArray: [0, 3, 0],
             width: [0, 1, 0],
         },
-        fill: {opacity: [1, 0.1, 1]},
+        //colors:['#008FFB', '#3f51b5', '#A300D6', '#F9C80E'],
+        dataLabels: {
+          style: {
+            colors: ['#D7263D', '#3f51b5']
+          }
+        },
+        colors: ['#D7263D', '#3f51b5'],
+        fill: {colors: ['#D7263D', '#3f51b5']},
         markers: {
             size: [0, 4, 0],
             strokeWidth: 2,
@@ -137,21 +141,7 @@ foreach($clients_chart as $c){
                     if (typeof y !== "undefined") {return y.toFixed(0);}
                     return y;
                 }
-            }, {
-                formatter: function (y) {
-                    if (typeof y !== "undefined") {
-                        return "$" + y.toFixed(2);
-                    }
-                    return y;
-                }
-            }, {
-                formatter: function (y) {
-                    if (typeof y !== "undefined") {
-                        return "$" + y.toFixed(2);
-                    }
-                    return y;
-                }
-            }, {
+            },{
                 formatter: function (y) {
                     if (typeof y !== "undefined") {
                         return y.toFixed(0);
@@ -161,8 +151,78 @@ foreach($clients_chart as $c){
             }]
         }
     };
-    var chart = new ApexCharts(document.querySelector("#projects-overview-chart"), options);
+    var chart = new ApexCharts(document.querySelector("#projects-overview-chart1"), options);
     chart.render();
+    
+///////////////////////////////////////////////////
+    var options = {
+        series: [{
+                    name: 'Potential revenue',
+                    type: 'bar',
+                    data: <?=json_encode($potential_revenue_chart);?>
+                }, {
+                    name: 'Revenue',
+                    type: 'bar',
+                    data: <?=json_encode($revenue_chart);?>
+                }],
+        chart: {height: 374, type: 'line', toolbar: {show: false}},
+        stroke: {
+            curve: 'smooth',
+            dashArray: [0, 3, 0],
+            width: [0, 1, 0],
+        },
+        colors: ['#662E9B', '#F9C80E'],
+        fill: {colors: ['#662E9B', '#F9C80E']},
+        markers: {
+            size: [0, 4, 0],
+            strokeWidth: 2,
+            hover: {size: 4}
+        },
+        xaxis: {
+            categories: <?=json_encode($categories_chart);?>,
+            axisTicks: {show: false},
+            axisBorder: {show: false}
+        },
+        grid: {
+            show: true,
+            xaxis: {lines: {show: true}},
+            yaxis: {lines: {show: false}},
+            padding: {top: 0, right: -2, bottom: 15, left: 10},
+        },
+        legend: {
+            show: true,
+            horizontalAlign: 'center',
+            offsetX: 0,
+            offsetY: -5,
+            markers: {width: 9, height: 9, radius: 6},
+            itemMargin: {horizontal: 10, vertical: 0},
+        },
+        plotOptions: {
+           // bar: {columnWidth: '30%', barHeight: '70%'}
+        },
+        //colors: ['blue', 'green', 'red', 'yellow'], // linechartcustomerColors,
+        tooltip: {
+            shared: true,
+            y: [{
+                formatter: function (y) {
+                    if (typeof y !== "undefined") {
+                        return "$" + y.toFixed(2);
+                    }
+                    return y;
+                }
+            }, {
+                formatter: function (y) {
+                    if (typeof y !== "undefined") {
+                        return "$" + y.toFixed(2);
+                    }
+                    return y;
+                }
+            }]
+        }
+    };
+    var chart = new ApexCharts(document.querySelector("#projects-overview-chart2"), options);
+    chart.render();
+    
 //}
 //}
 </script>

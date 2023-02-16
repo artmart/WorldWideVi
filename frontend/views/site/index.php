@@ -11,36 +11,39 @@ $table = '';
     $potential_revenue_total_this_month = 0;
     $revenue_total_this_monyh = 0;
     $bookers_total_this_month = 0;
-    
+
 foreach($clients as $c){
 
     if($c['b_id']>0){
         //$active_clients++;
         //$potential_revenue = $potential_revenue + $c['price'];
-        
-        if(date('Ym')==date('Ym', strtotime($c['addedTime']))){
-           // $active_clients_total_this_month++;
-            $potential_revenue_total_this_month + $potential_revenue_total_this_month + $c['price'];
+        if(date('Ym')==date('Ym', strtotime($c['addedTime']))){ 
+        $active_clients_total_this_month++;
+        if($c['paid']!==1 ){
+            $potential_revenue_total_this_month = $potential_revenue_total_this_month + $c['b_price'];
+        }else{
+                $revenue_total_this_monyh = $revenue_total_this_monyh + $c['b_price'];
+                
         }
+        }
+   
         
         $table .= "<tr>
                 <td>".$c['name']."</td>
                 <td>".$c['email'] ."</td>
                 <td>".$c['fromDATE']."</td>
                 <td>".$c['desiredDATE']."</td>
+                <td>".$c['bookedDATE']."</td>
                 <td>".$c['scheduleID']."</td>
                 <td>".$c['AGENT']."</td>
                 <td>".number_format($c['price'], 2)."</td>
-               </tr>";     
-    }else{
-        //$revenue = $revenue + $c['price'];
-        //$bookers_amount++;
-        if(date('Ym')==date('Ym', strtotime($c['fromDATE']))){
-                $revenue_total_this_monyh = $revenue_total_this_monyh + $c['price'];
-                $bookers_total_this_month++;
-        }
-    }       
-}
+               </tr>"; 
+         }else{
+            if(date('Ym')==date('Ym', strtotime($c['addedTime']))){ 
+                    $bookers_total_this_month++;
+                }
+         }     
+    }      
 ?>
 <div class="row project-wrapper">
 <div class="col-xxl-12">
@@ -57,7 +60,7 @@ foreach($clients as $c){
     <div class="flex-grow-1 overflow-hidden ms-3">
         <p class="text-uppercase fw-medium text-muted text-truncate mb-3">Active clients</p>
         <div class="d-flex align-items-center mb-3">
-            <h4 class="fs-4 flex-grow-1 mb-0"><span class="counter-value" data-target="<?=$active_clients_total_this_month;?>">0</span></h4>
+            <h4 class="fs-4 flex-grow-1 mb-0"><span class="counter-value" data-target="<?=$active_clients_total_this_month;?>"><?=$active_clients_total_this_month;?></span></h4>
             <!--<span class="badge badge-soft-danger fs-12"><i class="ri-arrow-down-s-line fs-13 align-middle me-1"></i>5.02 %<span>-->
         </div>
         <p class="text-muted text-truncate mb-0">Clients this month</p>
@@ -79,7 +82,7 @@ foreach($clients as $c){
     <div class="flex-grow-1 ms-3">
         <p class="text-uppercase fw-medium text-muted mb-3">Revenue <small>(finished clients)</small></p>
         <div class="d-flex align-items-center mb-3">
-            <h4 class="fs-4 flex-grow-1 mb-0">$<span class="counter-value" data-target="<?=$revenue_total_this_monyh;?>">0</span></h4>
+            <h4 class="fs-4 flex-grow-1 mb-0">$<span class="counter-value" data-target="<?=$revenue_total_this_monyh;?>"><?=$revenue_total_this_monyh;?></span></h4>
             <!--<span class="badge badge-soft-success fs-12"><i class="ri-arrow-up-s-line fs-13 align-middle me-1"></i>3.58 %</span>-->
         </div>
         <p class="text-muted mb-0">Revenue this month</p>
@@ -101,7 +104,7 @@ foreach($clients as $c){
     <div class="flex-grow-1 overflow-hidden ms-3">
         <p class="text-uppercase fw-medium text-muted text-truncate mb-3">Total Montly Bookers</p>
         <div class="d-flex align-items-center mb-3">
-            <h4 class="fs-4 flex-grow-1 mb-0"><span class="counter-value" data-target="<?=$bookers_total_this_month;?>">0</span></h4>
+            <h4 class="fs-4 flex-grow-1 mb-0"><span class="counter-value" data-target="<?=$bookers_total_this_month;?>"><?=$bookers_total_this_month;?></span></h4>
             <!--<span class="badge badge-soft-danger fs-12"><i class="ri-arrow-down-s-line fs-13 align-middle me-1"></i>10.35 %</span>-->
         </div>
         <p class="text-muted text-truncate mb-0">Bookers this month</p>
@@ -123,7 +126,7 @@ foreach($clients as $c){
 <div class="flex-grow-1 ms-3">
     <p class="text-uppercase fw-medium text-muted mb-3" style="margin-left: -60px;">Potential revenue <small>(unfinished clients)</small></p>
     <div class="d-flex align-items-center mb-3">
-        <h4 class="fs-4 flex-grow-1 mb-0">$<span class="counter-value" data-target="<?=$potential_revenue_total_this_month;?>">0</span></h4>
+        <h4 class="fs-4 flex-grow-1 mb-0">$<span class="counter-value" data-target="<?=$potential_revenue_total_this_month;?>"><?=$potential_revenue_total_this_month;?></span></h4>
         <!--<span class="badge badge-soft-success fs-12"><i class="ri-arrow-up-s-line fs-13 align-middle me-1"></i>3.58 %</span>-->
     </div>
     <p class="text-muted mb-0">Revenue this month</p>
@@ -165,89 +168,12 @@ function chartshow(dt){
         }); 
   }
   
-$(document).ready(function(){chartshow('0'); });
+$(document).ready(function(){chartshow('1'); });
 </script>
 </div><!-- end card -->
 </div><!-- end col -->
 </div><!-- end row -->
 </div><!-- end col -->
-<?php /*
-<div class="col-xxl-4">
-<div class="card">
-<div class="card-header border-0">
-<h4 class="card-title mb-0">Upcoming Schedules</h4>
-</div><!-- end cardheader -->
-<div class="card-body pt-0">
-<div class="upcoming-scheduled">
-<input type="text" class="form-control" data-provider="flatpickr" data-date-format="d M, Y" data-deafult-date="today" data-inline-date="true">
-</div>
-
-<h6 class="text-uppercase fw-semibold mt-4 mb-3 text-muted">Events:</h6>
-<div class="mini-stats-wid d-flex align-items-center mt-3">
-<div class="flex-shrink-0 avatar-sm">
-<span class="mini-stat-icon avatar-title rounded-circle text-success bg-soft-success fs-4">
-    09
-</span>
-</div>
-<div class="flex-grow-1 ms-3">
-<h6 class="mb-1">Development planning</h6>
-<p class="text-muted mb-0">iTest Factory </p>
-</div>
-<div class="flex-shrink-0">
-<p class="text-muted mb-0">9:20 <span class="text-uppercase">am</span></p>
-</div>
-</div><!-- end -->
-<div class="mini-stats-wid d-flex align-items-center mt-3">
-<div class="flex-shrink-0 avatar-sm">
-<span class="mini-stat-icon avatar-title rounded-circle text-success bg-soft-success fs-4">
-    12
-</span>
-</div>
-<div class="flex-grow-1 ms-3">
-<h6 class="mb-1">Design new UI and check sales</h6>
-<p class="text-muted mb-0">Meta4Systems</p>
-</div>
-<div class="flex-shrink-0">
-<p class="text-muted mb-0">11:30 <span class="text-uppercase">am</span></p>
-</div>
-</div><!-- end -->
-<div class="mini-stats-wid d-flex align-items-center mt-3">
-<div class="flex-shrink-0 avatar-sm">
-<span class="mini-stat-icon avatar-title rounded-circle text-success bg-soft-success fs-4">
-    25
-</span>
-</div>
-<div class="flex-grow-1 ms-3">
-<h6 class="mb-1">Weekly catch-up </h6>
-<p class="text-muted mb-0">Nesta Technologies</p>
-</div>
-<div class="flex-shrink-0">
-<p class="text-muted mb-0">02:00 <span class="text-uppercase">pm</span></p>
-</div>
-</div><!-- end -->
-<div class="mini-stats-wid d-flex align-items-center mt-3">
-<div class="flex-shrink-0 avatar-sm">
-<span class="mini-stat-icon avatar-title rounded-circle text-success bg-soft-success fs-4">
-    27
-</span>
-</div>
-<div class="flex-grow-1 ms-3">
-<h6 class="mb-1">James Bangs (Client) Meeting</h6>
-<p class="text-muted mb-0">Nesta Technologies</p>
-</div>
-<div class="flex-shrink-0">
-<p class="text-muted mb-0">03:45 <span class="text-uppercase">pm</span></p>
-</div>
-</div><!-- end -->
-
-<div class="mt-3 text-center">
-<a href="javascript:void(0);" class="text-muted text-decoration-underline">View all Events</a>
-</div>
-
-</div><!-- end cardbody -->
-</div><!-- end card -->
-</div><!-- end col -->
-*/ ?>
 </div><!-- end row -->
 
 <div class="row">
@@ -261,13 +187,14 @@ $(document).ready(function(){chartshow('0'); });
 </div><!-- end cardheader -->
 <div class="card-body">
 <div class="table-responsive table-card">
-<table id="example1" class="display table-nowrap align-middle" width="100%" cellspacing="0">
+<table id="example1" class="table table-nowrap table-centered align-middle" width="100%" cellspacing="0">
 <thead class="bg-light text-muted">
     <tr>
         <th scope="col">Name</th>
         <th scope="col">Email</th>
         <th scope="col">Start Date</th>
         <th scope="col">Due Date</th>
+        <th scope="col">bookedDATE</th>
         <th scope="col">Schedule Id</th>
         <th scope="col" style="width: 10%;">Agent Name</th>
         <th scope="col">Price</th>
@@ -306,152 +233,119 @@ $(document).ready(function(){chartshow('0'); });
 </div><!-- end card body -->
 </div><!-- end card -->
 </div><!-- end col -->
+</div><!-- end row -->
 
-<?php /*
-<div class="col-xl-5">
+<?php 
+//bookings//
+$bookings = Yii::$app->getDb()->createCommand("SELECT * FROM bookings")->queryAll();  
+
+$table_b = '';
+foreach($bookings as $c){
+    $status = '<td><span class="badge badge-soft-warning">Pending</span></td>';
+    $status = ($c['paid']==1)?'<span class="badge badge-soft-success">Paid</span>':'<span class="badge badge-soft-danger">Unpaid</span>';
+
+    //<span class="badge badge-soft-warning">Inprogress</span>
+    //<td><span class="badge badge-soft-danger">Pending</span></td>
+    //<td><span class="badge badge-soft-success">Completed</span></td>
+   // <td><span class="badge badge-soft-warning">Progress</span></td>
+          
+    $table_b .= "<tr>
+        <td>".$c['id'] ."</td>
+        <td>".$c['time'] ."</td>        
+        <td>".$c['email'] ."</td>
+        <td>".$c['name'] ."</td>
+        <td>".$c['bookedDATE']."</td>
+        <td>".$c['agent']."</td>
+        <td>".number_format($c['price'], 2)."</td>
+        <td>".$status."</td>
+       </tr>"; //<td>".$status."</td>         <td>".$c['scheduleID']."</td>
+    
+    }         
+?>
+<div class="row">
+<div class="col-xl-12">
 <div class="card">
-<div class="card-header align-items-center d-flex">
-<h4 class="card-title mb-0 flex-grow-1 py-1">My Tasks</h4>
-<div class="flex-shrink-0">
-<div class="dropdown card-header-dropdown">
-<a class="text-reset dropdown-btn" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <span class="text-muted">All Tasks <i class="mdi mdi-chevron-down ms-1"></i></span>
-</a>
-<div class="dropdown-menu dropdown-menu-end">
-    <a class="dropdown-item" href="#">All Tasks</a>
-    <a class="dropdown-item" href="#">Completed </a>
-    <a class="dropdown-item" href="#">Inprogress</a>
-    <a class="dropdown-item" href="#">Pending</a>
+<div class="card-header border-0 align-items-center d-flex">
+<h4 class="card-title mb-0 flex-grow-1">Booked</h4> 
+<!--<div id="wait" style="display:none;z-index: 1000;"><img src='/images/ajaxloader.gif'/></div>-->
+<div>
+<!--
+    <button type="button" class="btn btn-soft-secondary btn-sm" onclick="chartshow('booker')">Bookers</button>
+    <button type="button" class="btn btn-soft-secondary btn-sm" onclick="chartshow('scraper')">Scrapers</button>
+    -->
 </div>
-</div>
+</div><!-- end card header -->
+
+
+<div class="card-header p-0 border-0 bg-soft-light">
+<div class="row g-0 text-center">
 </div>
 </div><!-- end card header -->
 <div class="card-body">
 <div class="table-responsive table-card">
-<table class="table table-borderless table-nowrap table-centered align-middle mb-0">
-<thead class="table-light text-muted">
+<table id="example3" class="table table-nowrap table-centered align-middle" width="100%" cellspacing="0">
+<thead class="bg-light text-muted">
     <tr>
+        <th scope="col">ID</th>  
+        <th scope="col">Time</th>
+        <th scope="col">Email</th>       
         <th scope="col">Name</th>
-        <th scope="col">Dedline</th>
+        <th scope="col">BookedDate</th>
+        <th scope="col" style="width: 10%;">Agent</th>
+        <th scope="col">Price</th>
         <th scope="col">Status</th>
-        <th scope="col">Assignee</th>
-    </tr>
-</thead><!-- end thead -->
+    </tr><!-- end tr --><!--        <th scope="col" style="word-wrap: break-word; !important">Schedule Id</th>          -->
+</thead><!-- thead -->
 <tbody>
-    <tr>
-        <td>
-            <div class="form-check">
-                <input class="form-check-input fs-15" type="checkbox" value="" id="checkTask1">
-                <label class="form-check-label ms-1" for="checkTask1">
-                    Create new Admin Template
-                </label>
-            </div>
-        </td>
-        <td class="text-muted">03 Nov 2021</td>
-        <td><span class="badge badge-soft-success">Completed</span></td>
-        <td>
-            <a href="javascript: void(0);" class="d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Mary Stoner">
-                <img src="/images/users/avatar-2.jpg" alt="" class="rounded-circle avatar-xxs">
-            </a>
-        </td>
-    </tr><!-- end -->
-    <tr>
-        <td>
-            <div class="form-check">
-                <input class="form-check-input fs-15" type="checkbox" value="" id="checkTask2">
-                <label class="form-check-label ms-1" for="checkTask2">
-                    Marketing Coordinator
-                </label>
-            </div>
-        </td>
-        <td class="text-muted">17 Nov 2021</td>
-        <td><span class="badge badge-soft-warning">Progress</span></td>
-        <td>
-            <a href="javascript: void(0);" class="d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Den Davis">
-                <img src="/images/users/avatar-7.jpg" alt="" class="rounded-circle avatar-xxs">
-            </a>
-        </td>
-    </tr><!-- end -->
-    <tr>
-        <td>
-            <div class="form-check">
-                <input class="form-check-input fs-15" type="checkbox" value="" id="checkTask3">
-                <label class="form-check-label ms-1" for="checkTask3">
-                    Administrative Analyst
-                </label>
-            </div>
-        </td>
-        <td class="text-muted">26 Nov 2021</td>
-        <td><span class="badge badge-soft-success">Completed</span></td>
-        <td>
-            <a href="javascript: void(0);" class="d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Alex Brown">
-                <img src="/images/users/avatar-6.jpg" alt="" class="rounded-circle avatar-xxs">
-            </a>
-        </td>
-    </tr><!-- end -->
-    <tr>
-        <td>
-            <div class="form-check">
-                <input class="form-check-input fs-15" type="checkbox" value="" id="checkTask4">
-                <label class="form-check-label ms-1" for="checkTask4">
-                    E-commerce Landing Page
-                </label>
-            </div>
-        </td>
-        <td class="text-muted">10 Dec 2021</td>
-        <td><span class="badge badge-soft-danger">Pending</span></td>
-        <td>
-            <a href="javascript: void(0);" class="d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Prezy Morin">
-                <img src="/images/users/avatar-5.jpg" alt="" class="rounded-circle avatar-xxs">
-            </a>
-        </td>
-    </tr><!-- end -->
-    <tr>
-        <td>
-            <div class="form-check">
-                <input class="form-check-input fs-15" type="checkbox" value="" id="checkTask5">
-                <label class="form-check-label ms-1" for="checkTask5">
-                    UI/UX Design
-                </label>
-            </div>
-        </td>
-        <td class="text-muted">22 Dec 2021</td>
-        <td><span class="badge badge-soft-warning">Progress</span></td>
-        <td>
-            <a href="javascript: void(0);" class="d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Stine Nielsen">
-                <img src="/images/users/avatar-1.jpg" alt="" class="rounded-circle avatar-xxs">
-            </a>
-        </td>
-    </tr><!-- end -->
-    <tr>
-        <td>
-            <div class="form-check">
-                <input class="form-check-input fs-15" type="checkbox" value="" id="checkTask6">
-                <label class="form-check-label ms-1" for="checkTask6">
-                    Projects Design
-                </label>
-            </div>
-        </td>
-        <td class="text-muted">31 Dec 2021</td>
-        <td><span class="badge badge-soft-danger">Pending</span></td>
-        <td>
-            <a href="javascript: void(0);" class="d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Jansh William">
-                <img src="/images/users/avatar-4.jpg" alt="" class="rounded-circle avatar-xxs">
-            </a>
-        </td>
-    </tr><!-- end -->
+<?=$table_b?> 
 </tbody><!-- end tbody -->
 </table><!-- end table -->
 </div>
-<div class="mt-3 text-center">
-<a href="javascript:void(0);" class="text-muted text-decoration-underline">Load More</a>
-</div>
-</div><!-- end cardbody -->
+
+</div><!-- end card body -->
+
+
 </div><!-- end card -->
 </div><!-- end col -->
-*/?>
-
 </div><!-- end row -->
+<script>
+    $('#example3').DataTable({
+          "ordering": true,
+          "paging": true,
+          "searching": true,
+          "info":     true,
+          dom: "Bflrtip",   
+          buttons: [
+            {extend: "copy", className: "btn-sm"},
+            {extend: "csv", className: "btn-sm"},
+            {extend: "excel", className: "btn-sm"},
+            {extend: "print", className: "btn-sm"},
+          ],
+        }); 
+</script>  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <?php /*
 <div class="row">
