@@ -42,7 +42,7 @@
                                 <a href="/" class="nav-link" data-key="t-analytics">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a href="/clients" class="nav-link" data-key="t-analytics">All Clients</a>
+                                <a href="/clients" class="nav-link" data-key="t-analytics">Scrapers</a>
                             </li>
                             <!--
                             <li class="nav-item">

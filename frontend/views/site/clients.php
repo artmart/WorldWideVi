@@ -32,7 +32,7 @@ foreach($clients_chart as $c){
 <div class="col-xl-12">
 <div class="card">
 <div class="card-header border-0 align-items-center d-flex">
-<h4 class="card-title mb-0 flex-grow-1">All Clients</h4> 
+<h4 class="card-title mb-0 flex-grow-1">Scrapers</h4> 
 <div id="wait" style="display:none;z-index: 1000;"><img src='/images/ajaxloader.gif'/></div>
 <div>
   <!--  <button type="button" class="btn btn-soft-secondary btn-sm" onclick="chartshow('booker')">Bookers</button>
@@ -51,7 +51,7 @@ foreach($clients_chart as $c){
 <div class="card-body ">
 
 <div class="table-responsive table-card">
-<table id="example2" class="table table-nowrap table-centered align-middle" width="100%" cellspacing="0">
+<table id="example4" class="table table-nowrap table-centered align-middle" width="100%" cellspacing="0">
 <thead class="bg-light text-muted">
     <tr>
         <th scope="col">ID</th>  
@@ -77,7 +77,7 @@ foreach($clients_chart as $c){
 
 <script>
 $(document).ready(function () {
-    $('#example2').DataTable({
+    $('#example4').DataTable({
           "ordering": true,
           "paging": true,
           "searching": true,
