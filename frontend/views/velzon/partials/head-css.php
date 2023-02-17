@@ -15,9 +15,9 @@
 <link href="/css/app.min.css" rel="stylesheet" type="text/css" />
 <!-- custom Css-->
 <link href="/css/custom.min.css" rel="stylesheet" type="text/css" />
-<!---<script src="/js/jquery-3.3.1.js"></script>-->
+<!---<script src="/js/jquery-3.3.1.js"></script>
 
-<script src="/libs/datatables/datatables/jQuery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="/libs/datatables/datatables/jQuery-3.6.0/jquery-3.6.0.min.js"></script>-->
 <!-- Datatables -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>-->
 <script src="/libs/datatables/jszip/dist/jszip.min.js"></script>

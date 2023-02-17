@@ -16,6 +16,8 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 
+use frontend\models\Bookings;
+
 /**
  * Site controller
  */
@@ -23,7 +25,7 @@ class SiteController extends Controller
 {
     public function beforeAction($action)
     {
-        if (in_array($action->id, ['topchart', 'clientsreport', 'clients'])) {
+        if (in_array($action->id, ['topchart', 'clientsreport', 'clients', 'changestatus'])) {
             $this->enableCsrfValidation = false;
         }
         return parent::beforeAction($action);
@@ -37,7 +39,7 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => \yii\filters\AccessControl::className(),
-                'only' => ['logout', 'signup', 'index', 'topchart', 'clients', 'clientsreport'],
+                'only' => ['logout', 'signup', 'index', 'topchart', 'clients', 'clientsreport', 'changestatus'],
                 'rules' => [
                     [
                         'actions' => ['signup'],
@@ -45,7 +47,7 @@ class SiteController extends Controller
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout', 'index', 'topchart', 'clients', 'clientsreport'],
+                        'actions' => ['logout', 'index', 'topchart', 'clients', 'clientsreport', 'changestatus'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -99,6 +101,17 @@ class SiteController extends Controller
     public function actionClientsreport()
     {
         return $this->renderPartial('clients_report');
+    }
+    
+    
+    public function actionChangestatus(){
+        
+        $id = $_REQUEST['id'];
+        $option = $_REQUEST['option'];
+        
+        $booking = Bookings::findOne($id);
+        $booking->paid = $option;
+        if($booking->save()){return 1;}else{return 0;}  
     }
     
 
