@@ -15,11 +15,14 @@
 <link href="/css/app.min.css" rel="stylesheet" type="text/css" />
 <!-- custom Css-->
 <link href="/css/custom.min.css" rel="stylesheet" type="text/css" />
-<script src="/js/jquery-3.3.1.js"></script>
-<!-- Datatables 
+<!---<script src="/js/jquery-3.3.1.js"></script>-->
+
+<script src="/libs/datatables/datatables/jQuery-3.6.0/jquery-3.6.0.min.js"></script>
+<!-- Datatables -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>-->
 <script src="/libs/datatables/jszip/dist/jszip.min.js"></script>
 <script src="/libs/datatables/datatables.net/js/jquery.dataTables.min.js"></script>
+<!--<script src="/libs/datatables/datatables/datatables.min.js"></script>-->
 <script src="/libs/datatables/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <script src="/libs/datatables/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
 <script src="/libs/datatables/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
