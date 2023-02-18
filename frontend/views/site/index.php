@@ -20,14 +20,14 @@ foreach($clients as $c){
         if(date('Ym')==date('Ym', strtotime($c['addedTime']))){ 
         $active_clients_total_this_month++;
         if($c['paid']!==1 ){
-            $potential_revenue_total_this_month = $potential_revenue_total_this_month + $c['b_price'];
+           // $potential_revenue_total_this_month = $potential_revenue_total_this_month + $c['b_price'];
         }else{
                 $revenue_total_this_monyh = $revenue_total_this_monyh + $c['b_price'];
                 
         }
         }
    
-        
+        $potential_revenue_total_this_month = $potential_revenue_total_this_month + $c['b_price'];
         $table .= "<tr>
                 <td>".$c['name']."</td>
                 <td>".$c['email'] ."</td>
