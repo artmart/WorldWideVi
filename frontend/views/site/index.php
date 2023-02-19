@@ -38,7 +38,7 @@ foreach($bookings as $c){
     if($c['paid']==1){$color_class = "badge badge-soft-success";}
     if($c['paid']==2){$color_class = "badge badge-soft-warning";}
 
-     $status = '<select name="status" id="'.$c["id"].'" class="form-control form-control-sm '.$color_class.'" style="padding-top: 7px; font-size: 10px;">';   //onchange="changestatus('.$c["id"].')"
+     $status = '<select name="status" id="'.$c["id"].'" class="form-control form-control-sm select-first '.$color_class.' " style="padding-top: 7px; font-size: 10px;">';   //onchange="changestatus('.$c["id"].')"
      $status .= ($c['paid']==0)?'<option value="0" selected="selected" class="badge badge-soft-danger">Unpaid</option>':'<option value="0" class="badge badge-soft-danger">Unpaid</option>';
      $status .= ($c['paid']==1)?'<option value="1" selected="selected" class="badge badge-soft-success">Paid</option>':'<option value="1" class="badge badge-soft-success">Paid</option>';
      $status .= ($c['paid']==2)?'<option value="2" selected="selected" class="badge badge-soft-warning">Pending</option>':'<option value="2" class="badge badge-soft-warning">Pending</option>';        
@@ -108,7 +108,7 @@ foreach($bookings as $c){
 </div><!-- end col -->
 </div><!-- end row -->
 <script>
-    $('#example3').DataTable({
+ datatable = $('#example3').DataTable({
           "ordering": true,
           "paging": true,
           "searching": true,
@@ -195,6 +195,22 @@ $('.select-first').on('change', function(e) {
                     //alert("Status Updated Successfully");
                     //location.reload(); 
                     chartshow('1');
+                    //datatable.columns.adjust().draw();
+                    $(this).css({cursor:"default"});
+                    e.preventDefault(); 
+                    var second_class = 'badge-soft-danger';
+                    
+                       //$color_class = "badge badge-soft-danger";
+    //if($c['paid']==1){$color_class = "badge badge-soft-success";}
+    //if($c['paid']==2){$color_class = "badge badge-soft-warning";}
+                    
+                    if(options==1){second_class = 'badge-soft-success';}
+                    if(options==2){second_class = 'badge-soft-warning';}
+                    $(this).addClass(second_class);
+                    //$(".first").removeClass("second");
+                    $(this).css({cursor:"pointer"});
+                    e.preventDefault();   
+                      
                  }else{alert("Some error occurred. Please try again.");}
 			     
 			}
