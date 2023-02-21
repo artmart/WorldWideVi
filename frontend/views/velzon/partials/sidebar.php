@@ -44,10 +44,12 @@
                             <li class="nav-item">
                                 <a href="/clients" class="nav-link" data-key="t-analytics">Scrapers</a>
                             </li>
-                            <!--
+                            
                             <li class="nav-item">
-                                <a href="dashboard-analytics" class="nav-link" data-key="t-analytics"> Analytics </a>
+                                <a href="/user/view?id=<?=Yii::$app->user->id;?>" class="nav-link" data-key="t-analytics"> Profile </a>
                             </li>
+                            
+                            <!--
                             <li class="nav-item">
                                 <a href="dashboard-crm" class="nav-link" data-key="t-crm"> CRM </a>
                             </li>

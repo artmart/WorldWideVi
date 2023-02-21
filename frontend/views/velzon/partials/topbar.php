@@ -692,13 +692,15 @@ use yii\bootstrap5\Html;
                     } else {
                         echo Html::beginForm(['/logout'], 'post', ['class' => 'd-flex'])
                             . Html::submitButton(
-                                'Logout (' . Yii::$app->user->identity->username . ')',
+                                'Logout (' . Yii::$app->user->identity->firstname . ')',
                                 ['class' => 'btn btn-link logout text-decoration-none']
                             )
                             . Html::endForm();
                     }
                 
                 ?>
+                
+                
                 <!--
                     <button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="d-flex align-items-center">
