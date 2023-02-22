@@ -107,6 +107,16 @@ foreach($bookings as $c){
 </div><!-- end card -->
 </div><!-- end col -->
 </div><!-- end row -->
+
+<style>
+.badge{
+    -webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
+width: 100%;
+}
+
+</style>
 <script>
  datatable = $('#example3').DataTable({
           "ordering": true,
@@ -191,25 +201,29 @@ $('.select-first').on('change', function(e) {
             beforeSend: function(){$("#wait").css("display", "block"); }, 
 			success: function (response) {
 			     $("#wait").css("display", "none");
+                 
+                  var second_class = 'form-control-sm select-first badge badge-soft-danger';                      
+                    if(options==1){second_class = 'form-control-sm select-first badge badge-soft-success';}
+                    if(options==2){second_class = 'form-control-sm select-first badge badge-soft-warning';}
+                  $("#"+id).attr('class', second_class);
+                   //$("#"+id).addClass('form-control');
                  if(response==1){
-                    //alert("Status Updated Successfully");
-                    //location.reload(); 
-                    chartshow('1');
-                    //datatable.columns.adjust().draw();
-                    $(this).css({cursor:"default"});
-                    e.preventDefault(); 
-                    var second_class = 'badge-soft-danger';
+
+                    //$(this).css({cursor:"default"});
+                    //e.preventDefault(); 
+               
                     
-                       //$color_class = "badge badge-soft-danger";
-    //if($c['paid']==1){$color_class = "badge badge-soft-success";}
-    //if($c['paid']==2){$color_class = "badge badge-soft-warning";}
+                     //$("#"+id).slice(1).remove();
+                    //$("#"+id).addClass(second_class);
+                   
                     
-                    if(options==1){second_class = 'badge-soft-success';}
-                    if(options==2){second_class = 'badge-soft-warning';}
-                    $(this).addClass(second_class);
+                    //document.querySelector(this.id).className = second_class;
                     //$(".first").removeClass("second");
-                    $(this).css({cursor:"pointer"});
-                    e.preventDefault();   
+                    //$("#"+id).css({cursor:"default"});
+                    //$( '#example3' ).click();
+                    //e.preventDefault();   
+                    chartshow('1');
+                   
                       
                  }else{alert("Some error occurred. Please try again.");}
 			     
