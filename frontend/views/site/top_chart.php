@@ -45,36 +45,6 @@ foreach($clients as $c){
 
 ?>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <?php 
 $dt = $_REQUEST['dt'];
 
@@ -312,6 +282,8 @@ foreach($clients_chart as $c){
             axisTicks: {show: false},
             axisBorder: {show: false}
         },
+        yaxis: {min: 0},
+    
         grid: {
             show: true,
             xaxis: {lines: {show: true}},
@@ -379,6 +351,7 @@ foreach($clients_chart as $c){
             axisTicks: {show: false},
             axisBorder: {show: false}
         },
+        yaxis: {min: 0},
         grid: {
             show: true,
             xaxis: {lines: {show: true}},
